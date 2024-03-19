@@ -25,6 +25,9 @@ pkill -f hadoop.yarn
 set -e
 trap 'echo "[ERROR] Error occurred at $BASH_SOURCE:$LINENO command: $BASH_COMMAND"' ERR
 
+echo ">>>> HADOOP_HOME: ${HADOOP_HOME}"
+echo ">>>> HADOOP_COMMON_HOME: ${HADOOP_COMMON_HOME}"
+
 "$HADOOP_HOME"/bin/hdfs namenode -format
 "$HADOOP_HOME"/sbin/start-dfs.sh
 # Yarn won't start on newer versions of Java

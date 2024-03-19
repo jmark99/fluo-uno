@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env bash 
 
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -49,7 +49,8 @@ conf=$ACCUMULO_HOME/conf
 
 # On BSD systems (e.g., Mac OS X), paste(1) requires an argument.
 
-sed -i'' -e 's!paste -sd:)!paste -sd: -)!' "$conf/accumulo-env.sh"
+# causes setup to fail on 1.10.4
+#sed -i'' -e 's!paste -sd:)!paste -sd: -)!' "$conf/accumulo-env.sh"
 
 cp "$UNO_HOME"/conf/accumulo/common/* "$conf"
 if [[ $ACCUMULO_VERSION =~ ^1\..*$ ]]; then
