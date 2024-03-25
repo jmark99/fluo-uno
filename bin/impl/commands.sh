@@ -99,6 +99,7 @@ function uno_env_main() {
   if [[ -z $1 || $1 == '--vars' ]]; then
     echo "export HADOOP_HOME=\"$HADOOP_HOME\""
     [[ $HADOOP_VERSION =~ ^2\..*$ ]] && echo "export HADOOP_PREFIX=\"$HADOOP_HOME\""
+    [[ $HADOOP_VERSION =~ ^3\..*$ ]] && echo "export HADOOP_PREFIX=\"$HADOOP_HOME\""
     echo "export HADOOP_CONF_DIR=\"$HADOOP_CONF_DIR\""
     echo "export ZOOKEEPER_HOME=\"$ZOOKEEPER_HOME\""
     echo "export SPARK_HOME=\"$SPARK_HOME\""

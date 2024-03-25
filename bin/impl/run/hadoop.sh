@@ -25,8 +25,12 @@ pkill -f hadoop.yarn
 set -e
 trap 'echo "[ERROR] Error occurred at $BASH_SOURCE:$LINENO command: $BASH_COMMAND"' ERR
 
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export HADOOP_YARN_HOME=$HADOOP_HOME
+
 echo ">>>> HADOOP_HOME: ${HADOOP_HOME}"
 echo ">>>> HADOOP_COMMON_HOME: ${HADOOP_COMMON_HOME}"
+
 
 "$HADOOP_HOME"/bin/hdfs namenode -format
 "$HADOOP_HOME"/sbin/start-dfs.sh
@@ -40,6 +44,11 @@ fi
 
 namenode_port=9870
 if [[ $HADOOP_VERSION =~ ^2\..*$ ]]; then
+  namenode_port=50070
+  export HADOOP_PREFIX=$HADOOP_HOME
+fi
+
+if [[ $HADOOP_VERSION =~ ^3\..*$ ]]; then
   namenode_port=50070
   export HADOOP_PREFIX=$HADOOP_HOME
 fi
